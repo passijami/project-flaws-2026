@@ -1,0 +1,20 @@
+<h1>Datan tuonti</h1>
+
+<p>Syötä data tähän.</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label for="data">Data</label><br>
+    <textarea
+        id="data"
+        name="data"
+        rows="6"
+        cols="60"
+        placeholder="Liitä data tähän..."
+    ></textarea>
+
+    <br><br>
+
+    <button type="submit">Tuo data</button>
+</form>

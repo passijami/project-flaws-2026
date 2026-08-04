@@ -1,0 +1,10 @@
+<h2>Tuotehaku</h2>
+<form method="get">
+    <input name="q" value="{{ query }}">
+    <button type="submit">Hae</button>
+</form>
+<ul>
+{% for r in results %}
+    <li>{{ r.1 }} - {{ r.2 }} €</li>
+{% endfor %}
+</ul>

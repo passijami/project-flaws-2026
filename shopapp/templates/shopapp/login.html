@@ -1,0 +1,7 @@
+<h2>Kirjaudu</h2>
+<form method="post">
+    {% csrf_token %}
+    <input name="username" placeholder="käyttäjänimi"><br>
+    <input name="password" type="password" placeholder="salasana"><br>
+    <button type="submit">Kirjaudu</button>
+</form>
