@@ -41,12 +41,11 @@ def login_view(request):
 def search_products(request):
     query = request.GET.get("q", "")
 
-    sql = (
-        "SELECT id, name, price "
-        "FROM shopapp_product "
-        "WHERE name LIKE '%%%s%%'" % query
-    )
-
+    sql = (                                    # FIX FLAW 2
+        "SELECT id, name, price "              # sql = "SELECT id, name, price FROM shopapp_product WHERE name LIKE %s"
+        "FROM shopapp_product "                # with connection.cursor() as cursor:
+        "WHERE name LIKE '%%%s%%'" % query     #    cursor.execute(sql, [f"%{query}%"])
+    )                                          #    results = cursor.fetchall()
     with connection.cursor() as cursor:
         cursor.execute(sql)
         results = cursor.fetchall()
