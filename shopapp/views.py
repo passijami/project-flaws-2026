@@ -14,7 +14,8 @@ def register(request):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        user = User(username=username, password=password)
+        user = User(username=username)
+        user.set_password(password) # FLAW 1: user = User(username=username, password=password)
         user.save()
 
         return redirect("login")
