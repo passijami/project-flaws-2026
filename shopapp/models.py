@@ -24,6 +24,7 @@ class Order(models.Model):
 class Coupon(models.Model):
     code = models.CharField(max_length=20, unique=True)
     discount_percent = models.PositiveIntegerField()
+    used_by = models.ManyToManyField(User, blank=True, related_name="used_coupons")
 
     def __str__(self):
         return self.code

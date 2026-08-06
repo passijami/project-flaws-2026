@@ -60,8 +60,8 @@ def search_products(request):
 def order_detail(request, order_id):
     order = get_object_or_404(Order, pk=order_id)
     # FIX FLAW 3
-    if order.owner != request.user:
-        return HttpResponse("Käyttäjällä ei oikeutta nähdä tilausta!", status=403)
+    #if order.owner != request.user:
+        #return HttpResponse("Käyttäjällä ei oikeutta nähdä tilausta!", status=403)
     return render(
         request,
         "shopapp/order_detail.html",
