@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.db import connection
 import base64
 import pickle
+import json
 
 from .models import Product, Order, Coupon, ImportedOrder
 
@@ -89,14 +90,18 @@ def apply_coupon(request):
     return HttpResponse(message)
 
 # FLAW 5, Software/Data Integrity Failures
+
 def import_data(request):
     if request.method == "POST":
         encoded = request.POST.get("data", "")
         raw_bytes = base64.b64decode(encoded)
 
-        obj = pickle.loads(raw_bytes)
-
-        ImportedOrder.objects.create(raw_data=str(obj))
-        return HttpResponse("Data tuotu")
-
+        # FIX FLAW 5
+        #try:
+             #obj = json.loads(raw_bytes)
+        #except (json.JSONDecodeError, UnicodeDecodeError):
+            #return HttpResponse("Virheellinen data", status=400)
+        
+        #ImportedOrder.objects.create(raw_data=str(obj))
+        #return HttpResponse("Data tuotu")
     return render(request, "shopapp/import.html")
