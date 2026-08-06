@@ -77,6 +77,14 @@ def apply_coupon(request):
         message = f"Kuponki {code} hyväksytty: {coupon.discount_percent}% alennus"
     else:
         message = "Kuponkia ei ole"
+    # FIX FLAW 4
+        #if request.user in coupon.used_by.all():
+            #message = "Kuponki jo käytetty"
+        #else:
+            #coupon.used_by.add(request.user)
+            #message = f"Kuponki {code} hyväksytty: {coupon.discount_percent}% alennus"
+    #else:
+        #message = "Kuponkia ei ole"
 
     return HttpResponse(message)
 
