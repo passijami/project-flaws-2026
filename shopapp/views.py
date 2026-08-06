@@ -95,6 +95,9 @@ def import_data(request):
     if request.method == "POST":
         encoded = request.POST.get("data", "")
         raw_bytes = base64.b64decode(encoded)
+        obj = pickle.loads(raw_bytes)
+        ImportedOrder.objects.create(raw_data=str(obj))
+        return HttpResponse("Data tuotiin")
 
         # FIX FLAW 5
         #try:
