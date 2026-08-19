@@ -9,7 +9,7 @@ import json
 
 from .models import Product, Order, Coupon, ImportedOrder
 
-# FLAW 1, Authentication Failures
+# FLAW 1, Identification and Authentication Failures
 def register(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -89,7 +89,7 @@ def apply_coupon(request):
 
     return HttpResponse(message)
 
-# FLAW 5, Software/Data Integrity Failures
+# FLAW 5, Software and Data Integrity Failures
 
 def import_data(request):
     if request.method == "POST":
