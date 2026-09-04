@@ -9,7 +9,7 @@ import json
 
 from .models import Product, Order, Coupon, ImportedOrder
 
-# FLAW 1, Identification and Authentication Failures
+# FLAW 1, Cryptographic Failures
 def register(request):
     if request.method == "POST":
         username = request.POST["username"]
