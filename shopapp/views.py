@@ -27,10 +27,14 @@ def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-
-        user = authenticate(request, username=username, password=password)
+                                                                # Password is compared directly with the plaintext
+        user = User.objects.filter(
+            username=username,
+            password=password
+        ).first()
 
         if user:
+            user.backend = "django.contrib.auth.backends.ModelBackend"
             login(request, user)
             return redirect("search")
 
